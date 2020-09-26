@@ -1,0 +1,26 @@
+<!-- chat/templates/chat/index.html -->
+{% extends "QnA/base.html" %}
+{% block content%}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Chat Rooms</title>
+</head>
+<body>
+    Please select the chat room you wish to enter.
+    <ul class="list-group" style="text-align:center">
+            <a class="list-group-item list-group-item-light" href="/chat/lobby1/">Lobby 1</a>
+            <a class="list-group-item list-group-item-light" href="/chat/lobby2/">Lobby 2</a>
+            <a class="list-group-item list-group-item-light" href="/chat/lobby3/">Lobby 3</a>
+            <a class="list-group-item list-group-item-light" href="/chat/MMUChitChatArea/">MMU Chit Chat Area</a>
+            <a class="list-group-item list-group-item-light" href="/chat/music/">Music</a>
+            <a class="list-group-item list-group-item-light" href="/chat/cat/">I love cat</a>
+            <a class="list-group-item list-group-item-light" href="/chat/consultation/">Consultation</a>
+            <a class="list-group-item list-group-item-light" href="/chat/gaming/">Gaming Chat Channel</a>
+            <a class="list-group-item list-group-item-light" href="/chat/studytips/">Study Tips Sharing</a>
+    </ul>
+
+</body>
+</html>
+{% endblock content %}

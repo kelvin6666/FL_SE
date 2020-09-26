@@ -1,0 +1,102 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
+		<link rel="stylesheet" type="text/css" href="{% static 'QnA/base.css' %}"> 
+
+		<link rel="shortcut icon" type="image/png" href="static/Image/favicon.png/">
+		
+		{% if title %}
+			<title>MondayBlur - {{ title }}</title>
+		{% else %}
+			<title>MondayBlur</title>
+		{% endif %}
+</head>
+<body>
+	<header class="site-header">
+	  <nav class="navbar navbar-expand-md bg-steel fixed-top">
+	    <div class="container">
+				{% if user.is_authenticated %}
+				<a class="navbar-brand mr-4" href="{% url 'qna' %}"><img src="{% static 'Image/logo.png' %}"/></a>
+				{% else %}
+				<a class="navbar-brand mr-4" href="{% url 'home' %}"><img src="{% static 'Image/logo.png' %}"/></a>
+				{% endif %}
+	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+	      <span class="navbar-toggler-icon"></span>
+	      </button>
+	      <div class="collapse navbar-collapse" id="navbarToggle">
+	        <div class="navbar-nav mr-auto">
+						{% if error %}
+
+						{% endif %}
+						<form class="form-inline" action="/search/" method="get">
+								<input class="form-control mr-sm-2" type="text" name="search">
+								<button class="btn btn-info" type="submit">
+										<span class="glyphicon glyphicon-search"></span> Search
+								</button>
+						</form>
+	        </div>
+	        </div>
+	        <!-- Navbar Right Side -->
+	        <div class="navbar-nav">
+	          {% if user.is_authenticated %}
+						<a class="nav-item nav-link" href="{% url 'profile' %}"><img class="rounded-circle article-img" style="width:30px;height:30px"src="{{ user.profile.image.url }}">Profile</a>
+						<a class="nav-item nav-link" href="/chat/">Chat</a>
+						<a class="nav-item nav-link" href="{% url 'new-question' %}"><span class="glyphicon glyphicon-user"></span>New Question</a>
+						<a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
+						
+	          {% else %}
+	         	 <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
+	             <a class="nav-item nav-link" href="{% url 'register' %}">Register</a>
+	          {% endif %}
+	        </div>
+	      </div>
+	    </div>
+	  </nav>
+	</header>
+
+	<main role="main" class="container">
+	  <div class="row">
+	    <div class="col-md-8">
+	      {% if messages %}
+	      	{% for message in messages %}
+	      		<div class='alert alert-{{ message.tags }}'>
+	      			{{ message }}
+	      		</div>
+	      	{% endfor %}
+	      {% endif %}
+	      {% block content %}{% endblock %}
+	      
+	    </div>
+	    <div class="col-md-4">
+	      <div class="content-section">
+	        <h3 align="center">Faculty</h3>
+				<ul class="list-group" style="text-align:center">
+	            	<a class="list-group-item list-group-item-light" href="/category/fac/">Faculty of Applied Communication(FAC)</a>
+	            	<a class="list-group-item list-group-item-light" href="/category/fob/">Faculty of Business(FOB)</a>
+	            	<a class="list-group-item list-group-item-light" href="/category/fca/">Faculty of Cinematic Arts(FCA)</a>
+	            	<a class="list-group-item list-group-item-light" href="/category/fci/">Faculty of Computing And Informatics(FCI)</a>
+	            	<a class="list-group-item list-group-item-light" href="/category/fcm/">Faculty of Creative Multimedia(FCM)</a>
+	            	<a class="list-group-item list-group-item-light" href="/category/foe/">Faculty of Engineering(FOE)</a>
+					<a class="list-group-item list-group-item-light" href="/category/fet/">Faculty of Engineering And Technology(FET)</a>
+					<a class="list-group-item list-group-item-light" href="/category/fist/">Faculty of Informatics Science And Technology(FIST)</a>
+					<a class="list-group-item list-group-item-light" href="/category/fol/">Faculty of Law(FOL)</a>
+					<a class="list-group-item list-group-item-light" href="/category/fom/">Faculty of Management(FOM)</a>	
+	        	</ul>
+	        </p>
+	</main>
+	<!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>
