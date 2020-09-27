@@ -43,3 +43,6 @@ def profile(request):
     }
 
     return render(request, 'users/update.html', context)
+
+def menu(request):
+    return render(request,'users/menu.html')
