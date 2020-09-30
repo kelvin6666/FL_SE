@@ -1,0 +1,108 @@
+{% extends "tutorial/base.html" %}
+{% load static %}
+{% block content%}
+	<article class="media content-section" style = "border-radius: 25px; background-color: #d6eef8; left: 90% ">
+	  <img class="rounded-circle article-img" src="{{ tutorial.author.profile.image.url }}">
+	  <div class="media-body">
+	    <div class="article-metadata">
+	      <a class="mr-2" href="#">{{ tutorial.author.username }}</a>
+				<small class="text-muted">{{ tutorial.date_published|date:"F d, Y" }}</small>
+				{% if object.author == user %}
+	      	<div>
+	      		<a class="btn btn-secondary btn-sm mt-1 mb-1" href="#">Update</a>
+				<a class="btn btn-danger btn-sm mt-1 mb-1" href="#"><img src="{% static 'Image/delete.png' %}"></a>
+	      	</div>
+	      {% endif %}
+	    </div>
+	    <h2 class="article-title">{{ tutorial.title }}</h2>
+			
+			{% if tutorial.image %}
+				<div>
+					<a href="{{ tutorial.image.url }}"><img style='width:50%;height: 50%;'src="{{ tutorial.image.url }}"></a>
+				</div>
+			{% endif %}
+			<p class="article-content">{{ tutorial.content }}</p>
+
+			<p class="article-content">{{ tutorial.comment }}</p>
+			<div>
+			{% if user in tutorial.liked_by.all %}
+						<form method="post">
+							{% csrf_token %}
+							<small>Likes : {{ tutorial.liked_by.count }}</small>
+						</form>
+					{% else %}
+						<form method="post">
+							{% csrf_token %}
+							<small>Likes : {{ tutorial.liked_by.count }}</small>
+						</form>
+					{% endif %}
+			</div>
+			<hr>
+			{% for comment in tutorial.comments.all %}
+				{% if comment.r_token == False %}
+					<img class="rounded-circle article-img" src="{{ comment.author.profile.image.url }}">
+					<a class="mr-2" href="#">{{ comment.author }}</a>
+					<small class="text-muted">{{ comment.date_published|date:"F d, Y" }}</small>
+					{% if comment.author == user %}
+						<div>
+							
+							<a class="btn btn-danger btn-sm mt-1 mb-1" style="float:right;position: relative; bottom:70px" href="{% url 'comment-delete' comment.id %}"><img src="{% static 'Image/delete.png' %}"></a>
+							<a class="btn btn-secondary btn-sm mt-1 mb-1" style="float:right;position: relative; bottom:70px;right: 5px;" href="{% url 'comment-update' comment.id %}">Update</a>
+						</div>
+					{% endif %}
+
+					{% if user in comment.liked_by.all %}
+						<form method="post">
+							{% csrf_token %}
+							<small>Likes :{{ comment.liked_by.count }}</small>
+							<a class="btn" href="{% url 'vote' comment.id%}"><img src="{% static 'Image/dislike.png' %}"> dislike</a>
+						</form>
+					{% else %}
+						<form method="post">
+							{% csrf_token %}
+							<small>Likes :{{ comment.liked_by.count }}</small>
+							<a class="btn" href="{% url 'vote' comment.id%}"><img src="{% static 'Image/like.png' %}"> Like</a>
+						</form>
+					{% endif %}
+
+					<p style="border-left:6px solid grey; background-color:lightblue; display: block;">{{ comment.comment }}</p>
+					{% if object.author == user and comment.r_token == False  %}
+						<a href="{% url 'solution' comment.id %}">This solve my tutorial !</a>
+					{% endif %}
+				{% elif comment.r_token == True %}
+					{% if tutorial.author == user %}
+					<a href="{% url 'solution' comment.id %}">Undo this as the solution</a>
+					{% endif %}
+					<h3>This is the solution !</h3>
+					<img class="rounded-circle article-img" src="">
+					<a class="mr-2" href="#">{{ comment.author }}</a>
+					<small class="text-muted">{{ comment.date_published|date:"F d, Y" }}</small>
+					{% if user in comment.liked_by.all %}
+						<form method="post">
+							{% csrf_token %}
+							<small>Likes : {{ comment.liked_by.count }}</small>
+							<a class="btn" href="{% url 'vote' comment.id%}"><img src="{% static 'Image/dislike.png' %}"> dislike</a>
+						</form>
+					{% else %}
+						<form method="post">
+							{% csrf_token %}
+							<small>Likes : {{ comment.liked_by.count }}</small>
+							<a class="btn" href="{% url 'vote' comment.id%}"><img src="{% static 'Image/like.png' %}">Like</a>
+						</form>
+					{% endif %}
+
+					{% if comment.author == user %}
+					<a class="btn btn-danger btn-sm mt-1 mb-1" style="float:right;position: relative; bottom:70px" href="{% url 'comment-delete' comment.id %}"><img src="{% static 'Image/delete.png' %}"></a>
+
+	      			{% endif %}
+					<p style="border-left:6px solid grey; background-color:lightblue;">{{ comment.comment }}</p>
+					{% endif %}
+				<hr>
+			{% empty %}
+				<p>There is no comment</p>
+			{% endfor %}
+			<a href="#">Leave A Comment</a>
+			<br>
+	  </div>
+	</article>
+{% endblock content %}

@@ -3,8 +3,12 @@ from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login
-from django.views.generic import CreateView
+from django.views.generic import CreateView,DetailView
 from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
+
+from .models import Profile
+from tutorial.models import FilesAdmin
 
 
 # Create your views here.
@@ -19,9 +23,9 @@ def register(request):
     else:
         form = UserRegisterForm() 
     return render(request, 'users/register.html', {'form': form})
-
+    
 @login_required
-def profile(request):
+def profileUpdateView(request):
     if request.method == 'POST':
         u_form = UserUpdateForm(request.POST, instance=request.user)#request user data 
         p_form = ProfileUpdateForm(request.POST,
@@ -39,10 +43,26 @@ def profile(request):
 
     context = {
         'u_form': u_form,#define forms to use in template
-        'p_form': p_form
+        'p_form': p_form,
+        'file' : FilesAdmin.objects.all()
     }
-
     return render(request, 'users/update.html', context)
+
+@login_required
+def profile(request):
+    context = {
+        'file' : FilesAdmin.objects.all()
+    }
+    return render(request, 'users/profile.html',context)
 
 def menu(request):
     return render(request,'users/menu.html')
+
+def userListView(request):
+    users = get_user_model().objects.all()
+    context= {
+        'users': users,
+        'file' : FilesAdmin.objects.all()
+    }
+    return render(request, 'users/user_list.html', context)
+   
