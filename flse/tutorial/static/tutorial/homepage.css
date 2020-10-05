@@ -6,6 +6,7 @@ body {
     background-image: url(https://www.kut.org/sites/kut/files/styles/x_large/public/201710/37472995712_bd9e3fe728_k__1_.jpg);
     background-position: 50% 20%;
     background-repeat: no-repeat;
+    background-size: 100%,auto;
 }
 
 h1, h2, h3, h4, h5, h6 {

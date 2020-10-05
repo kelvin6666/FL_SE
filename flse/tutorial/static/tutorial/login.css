@@ -1,12 +1,5 @@
-{% load static%}
 
-body {
-    background: #fafafa;
-    color: #333333;
-    background-image: url(https://deskart.ru/wp-content/uploads/2018/08/zakar.jpg);
-    background-position: 50% 5%;
-    background-repeat: no-repeat;
-}
+
 
 h1, h2, h3, h4, h5, h6 {
 color: #444444;
