@@ -18,29 +18,34 @@ def home(request):
 
 
 class TutorialCreateView(CreateView):
-    model = Tutorial #choosing the database
-    fields = ['title','content','image'] #to specify what user needs to input
+    model = Tutorial 
+    fields = ['title','content','image'] 
 
-    def form_valid(self,form): #this is needed to tell the server what to do after the form is valid
-        form.instance.author = self.request.user #the author of the new question is the user requesting the new post
+    def form_valid(self,form):
+        form.instance.author = self.request.user 
         return super().form_valid(form)
 
-class TutorialDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
-    model = Tutorial #choosing the database 
-    success_url ='/tutorial/' #the redirect after any action is done successfully
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['file'] = FilesAdmin.objects.all()
+        return context
 
-    def test_func(self): #to test the user input 
-        post = self.get_object() #to get data from the model question
-        if self.request.user == post.author: #to check whether the requesting user is the question author
+class TutorialDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = Tutorial 
+    success_url ='/tutorial/' 
+
+    def test_func(self): 
+        post = self.get_object() 
+        if self.request.user == post.author: 
             return True
         return False
 
 class TutorialListView(ListView):
-    model = Tutorial #choosing the database 
-    template_name = 'tutorial/home.html' #specifying the template
-    context_object_name = 'Tutorial' #the object name in the template
-    ordering = ['-date_published'] #to arrange the post from the latest date published
-    paginate_by = 5 #to limit 5 question per page
+    model = Tutorial
+    template_name = 'tutorial/home.html'
+    context_object_name = 'Tutorial' 
+    ordering = ['-date_published'] 
+    paginate_by = 5
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

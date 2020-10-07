@@ -84,14 +84,15 @@
                 <a href="#"><img style="width:20px;height:20px; " src="{% static 'Image/plus.png' %}"/> New Tutorial </a>
                 <a href="{% url 'new-notes' %}"><img style="width:20px;height:20px; " src="{% static 'Image/plus.png' %}"/> New Notes </a>
                 <a href="{% url 'user_list'%}" style="padding-top : 70px"><img style="width:20px;height:20px;filter: invert(100%);" src="{% static 'Image/student.png' %}"/> Student's List </a>
-                <a href="#"><img style="width:20px;height:20px;filter: invert(100%);" src="{% static 'Image/tutorial.png' %}"/> Tutorial's List </a>
-                <a href="#"><img style="width:20px;height:20px;filter: invert(100%);" src="{% static 'Image/schedule.png' %}"/> Schedule </a>
+                <a href="{% url 'tutorial' %}"><img style="width:20px;height:20px;filter: invert(100%);" src="{% static 'Image/tutorial.png' %}"/> Tutorial's List </a>
+                <a href="{% url 'calendar' %}"><img style="width:20px;height:20px;filter: invert(100%);" src="{% static 'Image/schedule.png' %}"/> Schedule </a>
                 <a href="{% url 'quiz_index' %}"><img style="width:20px;height:20px;filter: invert(100%);" src="{% static 'Image/quiz.png' %}"/> Quiz </a>
             {% else %}
                 <a href="{% url 'user_list'%}"><img style="width:20px;height:20px;filter: invert(100%);" src="{% static 'Image/student.png' %}"/> Student's List </a>
-                <a href="#"><img style="width:20px;height:20px;filter: invert(100%);" src="{% static 'Image/tutorial.png' %}"/> Tutorial's List </a>
-                <a href="#"><img style="width:20px;height:20px;filter: invert(100%);" src="{% static 'Image/schedule.png' %}"/> Schedule </a>
+                <a href="{% url 'tutorial' %}"><img style="width:20px;height:20px;filter: invert(100%);" src="{% static 'Image/tutorial.png' %}"/> Tutorial's List </a>
+                <a href="{% url 'calendar' %}"><img style="width:20px;height:20px;filter: invert(100%);" src="{% static 'Image/schedule.png' %}"/> Schedule </a>
                 <a href="{% url 'quiz_index' %}"><img style="width:20px;height:20px;filter: invert(100%);" src="{% static 'Image/quiz.png' %}"/> Quiz </a>
+                <a href="{% url 'quiz_progress' %}"><img style="width:20px;height:20px;filter: invert(100%);" src="{% static 'Image/progress.png' %}"/> My Progress </a>
             {% endif %}
             
         </div>
