@@ -44,8 +44,6 @@
 						<img  style="width:50px;height:50px" class="rounded-circle article-img" src="{{ comment.author.profile.image.url }}">
 						<div class="media-body">
 							<div class="article-metadata">
-								<a style= "position: absolute;left: 610px;"class="btn btn-outline-warning btn-sm mt-1 mb-1" href="{% url 'comment-update' comment.pk %}"><img style="width:25px;height:25px;" src="{% static 'Image/edit.png' %}"/></a>
-								<a style= "position: absolute;left: 660px;"class="btn btn-outline-danger btn-sm mt-1 mb-1" href="{% url 'comment-delete' comment.pk %}"><img style="width:25px;height:25px;" src="{% static 'Image/trash.png' %}"/></a>
 								<a class="mr-2" href="#">{{ comment.author }}</a>
 								<small>Likes :{{ comment.liked_by.count }}</small>
 								<p class="article-title"> {{ comment.comment }}</p>	
@@ -137,6 +135,9 @@
 				<p>There is no comment</p>
 			{% endfor %}
 			<br>
+		<a style = "float:right;border-radius: 25px;background-color: white;padding:5px;padding-left:20px;padding-right:20px;" href="{% url 'tutorial' %}"><img style="width:20px;height:20px" src="{% static 'Image/back.png' %}"> Back to Home</a>
+
 	  </div>
 	</article>
+
 {% endblock content %}

@@ -256,3 +256,4 @@ def SolutionView(request,pk):
             post.save()
         return  redirect((reverse('tutorial-detail', kwargs={'pk':comment}))) 
     return render(request,'tutorial/solution_form.html')
+
