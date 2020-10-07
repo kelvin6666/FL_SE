@@ -38,6 +38,20 @@ class Comment(models.Model):
     def get_absolute_url(self):
         return reverse('tutorial')
 
+class Qcomment(models.Model):
+    comment = models.ForeignKey(Comment,on_delete=models.CASCADE,related_name="Qcomments")
+    liked_by = models.ManyToManyField(User,related_name='liked_by_qcomment',blank = True)
+    like = models.IntegerField(default=0)
+    r_token = models.BooleanField(default=False)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    date_published = models.DateTimeField(default=timezone.now)
+    qcomment = models.TextField()
+
+    def __str__(self):
+        return self.qcomment
+
+    
+
 class FilesAdmin(models.Model):
 	file = models.FileField(upload_to='media')
 	title=models.CharField(max_length=50)
