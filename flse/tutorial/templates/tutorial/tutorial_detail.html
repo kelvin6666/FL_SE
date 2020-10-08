@@ -83,7 +83,7 @@
 													<a style= "position: absolute;left: 660px;"class="btn btn-outline-danger btn-sm mt-1 mb-1" href="{% url 'qcomment-delete' qcomment.pk %}"><img style="width:20px;height:20px;" src="{% static 'Image/trash.png' %}"/></a>
 												{% endif %}
 									
-												{% if user in comment.liked_by.all %}
+												{% if user in qcomment.liked_by.all %}
 													<form method="post">
 														{% csrf_token %}
 														<a class="btn-mr-3" href="{% url 'qvote' qcomment.id%}"><img src="{% static 'Image/dislike.png' %}"> <small>Dislike</small></a>
@@ -110,7 +110,7 @@
 												<small>Likes :{{ qcomment.liked_by.count }}</small>
 												<p class="article-title"> {{ qcomment.qcomment }}</p>	
 									
-												{% if user in comment.liked_by.all %}
+												{% if user in qcomment.liked_by.all %}
 												<form method="post">
 													{% csrf_token %}
 													<a class="btn-mr-3" href="{% url 'qvote' qcomment.id%}"><img src="{% static 'Image/dislike.png' %}"> <small>Dislike</small></a>
