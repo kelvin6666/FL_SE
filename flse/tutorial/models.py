@@ -50,6 +50,9 @@ class Qcomment(models.Model):
     def __str__(self):
         return self.qcomment
 
+    def get_absolute_url(self):
+        return reverse('tutorial')
+
     
 
 class FilesAdmin(models.Model):
