@@ -16,6 +16,12 @@ def home(request):
         }
     return render(request,'tutorial/homepage.html',context)
 
+def addquestion(request):
+    context={
+        'file' : FilesAdmin.objects.all()
+        }
+    return render(request,'tutorial/addquestion.html',context)
+
 
 class TutorialCreateView(CreateView):
     model = Tutorial 

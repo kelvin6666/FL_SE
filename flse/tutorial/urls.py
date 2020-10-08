@@ -10,6 +10,7 @@ urlpatterns = [
     path('', views.home, name= 'tutorial-home'),
     path("tutorial/<int:pk>/", TutorialDetailView.as_view(), name='tutorial-detail'),
     path('tutorial/<int:pk>/delete/', TutorialDeleteView.as_view(),name='tutorial-delete'),
+    path('addquestion/', views.addquestion,name='add-question'),
     path("search/", views.search),
     path("upload/notes/",views.upload,name='new-notes'),
     path("tutorial/", login_required(TutorialListView.as_view()), name="tutorial"),

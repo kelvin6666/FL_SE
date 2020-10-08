@@ -79,8 +79,8 @@
 												<small>Likes :{{ qcomment.liked_by.count }}</small>
 												<p class="article-title"> {{ qcomment.qcomment }}</p>
 												{% if qcomment.author == user %}
-													<a style= "position: absolute;left: 610px;"class="btn btn-outline-warning btn-sm mt-1 mb-1" href="{% url 'qcomment-update' qcomment.pk %}"><img style="width:20px;height:20px;" src="{% static 'Image/edit.png' %}"/></a>
-													<a style= "position: absolute;left: 660px;"class="btn btn-outline-danger btn-sm mt-1 mb-1" href="{% url 'qcomment-delete' qcomment.pk %}"><img style="width:20px;height:20px;" src="{% static 'Image/trash.png' %}"/></a>
+													<a style= "position: absolute;left: 610px;"class="btn btn-outline-danger btn-sm mt-1 mb-1" href="{% url 'qcomment-delete' qcomment.pk %}"><img style="width:20px;height:20px;" src="{% static 'Image/trash.png' %}"/></a>
+													<a style= "position: absolute;left: 660px;"class="btn btn-outline-warning btn-sm mt-1 mb-1" href="{% url 'qcomment-update' qcomment.pk %}"><img style="width:20px;height:20px;" src="{% static 'Image/edit.png' %}"/></a>
 												{% endif %}
 									
 												{% if user in qcomment.liked_by.all %}

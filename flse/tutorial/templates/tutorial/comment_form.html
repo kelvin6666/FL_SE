@@ -1,7 +1,7 @@
 {% extends "tutorial/base.html" %}
 {% load crispy_forms_tags %}
 {% block content%}
-    <h1>Comment</h1>
+    <h1>Question</h1>
     <form method='POST'>
         {% csrf_token %}
         {{ form|crispy }}
