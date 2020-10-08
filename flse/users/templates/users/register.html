@@ -41,7 +41,7 @@
 		<!--Nav Bar-->
 	  <nav style="background-color: #111;" class="navbar navbar-expand-md navbar-dark  fixed-top">
 	    <div class="container">
-				 <a class="navbar-brand mr-4" href="#">Fraction <b style="font-size:19px">Learner</b></a>
+				 <a class="navbar-brand mr-4" href="{% url 'tutorial-home' %}">Fraction <b style="font-size:19px">Learner</b></a>
 	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
 	      <span class="navbar-toggler-icon"></span>
 	      </button>
@@ -92,17 +92,14 @@
                 <fieldset class="form-group">
                     <legend style ="color:black" class="border-bottom mb-4">Join Now </legend>
                     {{ form|crispy }}
-                    <small style ="color:black">
-                            Forgotten Password?<a class="ml-2" href="#">Click here</a>
-                        </small>
                 </fieldset>
                 <div class="form-group">
-                    <button class="btn btn-outline-info" type="submit">Log In</button>
+                    <button class="btn btn-outline-info" type="submit">Register</button>
                 </div>
             </form>
             <div class="border-top pt-3">
                 <small  style ="color:black" >
-                    Need An Account?<a class="ml-2" href="{% url 'register' %}">Sign Up Now</a>
+                    Already Have An Account?<a class="ml-2" href="{% url 'login' %}">Login Now</a>
                     
                     <hr>
 

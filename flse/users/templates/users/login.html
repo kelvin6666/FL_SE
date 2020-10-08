@@ -41,7 +41,7 @@
 		<!--Nav Bar-->
 	  <nav style="background-color: #111;" class="navbar navbar-expand-md navbar-dark  fixed-top">
 	    <div class="container">
-				 <a class="navbar-brand mr-4" href="#">Fraction <b style="font-size:19px">Learner</b></a>
+				 <a class="navbar-brand mr-4" href="{% url 'tutorial-home' %}">Fraction <b style="font-size:19px">Learner</b></a>
 	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
 	      <span class="navbar-toggler-icon"></span>
 	      </button>
@@ -93,7 +93,7 @@
                     <legend style ="color:black" class="border-bottom mb-4">Log In</legend>
                     {{ form|crispy }}
                     <small style ="color:black">
-                            Forgotten Password?<a class="ml-2" href="#">Click here</a>
+                            Forgotten Password?<a class="ml-2" href="{% url 'password_reset'%}">Click here</a>
                         </small>
                 </fieldset>
                 <div class="form-group">

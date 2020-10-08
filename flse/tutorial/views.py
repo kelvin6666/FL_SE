@@ -215,6 +215,7 @@ def add_comment(request,pk):
     }
 
     return render(request,'tutorial/comment_form.html',context)
+    
 
 def qcomment_like(request,pk):
     comment = get_object_or_404(Qcomment,pk=pk)
